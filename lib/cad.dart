@@ -12,7 +12,7 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastrar'),
+        title: Text('SignUp'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -22,7 +22,7 @@ class SignUpPage extends StatelessWidget {
               controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
-                errorText: _validateEmail(_emailController.text) ? null : 'Por favor, coloque um email valido',
+                errorText: _validateEmail(_emailController.text) ? null : 'Please enter a valid email',
               ),
             ),
             TextField(
@@ -30,13 +30,13 @@ class SignUpPage extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
-                errorText: _validatePassword(_passwordController.text) ? null : 'A senha precisa de pelo menos 6 caracteres',
+                errorText: _validatePassword(_passwordController.text) ? null : 'Password needs at least 6 characters',
               ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => _signUp(context),
-              child: Text('Cadastrar'),
+              child: Text('Sing Up Now!'),
             ),
           ],
         ),
@@ -56,6 +56,9 @@ class SignUpPage extends StatelessWidget {
     if (_validateEmail(_emailController.text) && _validatePassword(_passwordController.text)) {
       try {
         await _auth.createUserWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Account created! Please log-in!')),
+        );
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => LoginPage()),

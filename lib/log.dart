@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'cad.dart';
+
 class LoginPage extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -20,7 +22,7 @@ class LoginPage extends StatelessWidget {
               controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
-                errorText: _validateEmail(_emailController.text) ? null : 'Por favor, coloque um email valido',
+                errorText: _validateEmail(_emailController.text) ? null : 'Please enter a valid email',
               ),
             ),
             TextField(
@@ -28,7 +30,7 @@ class LoginPage extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
-                errorText: _validatePassword(_passwordController.text) ? null : 'A senha precisa de pelo menos 6 caracteres',
+                errorText: _validatePassword(_passwordController.text) ? null : 'Password needs at least 6 characters',
               ),
             ),
             SizedBox(height: 20),
@@ -58,16 +60,16 @@ class LoginPage extends StatelessWidget {
         await _auth.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
         // certo
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login Funcionou!')),
+          SnackBar(content: Text('Logged-in!')),
         );
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
+          MaterialPageRoute(builder: (context) => SignUpPage()),
         );
       } catch (e) {
         // erro
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login Falhou!')),
+          SnackBar(content: Text('Login Failed!')),
         );
       }
     }
