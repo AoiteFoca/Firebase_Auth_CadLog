@@ -1,5 +1,5 @@
 # SignUp and Login System with Firebase Auth
- <img alt="Project Status" src="https://img.shields.io/badge/Status-Finalizado-green"><br/>
+ <img alt="Project Status" src="https://img.shields.io/badge/Status-Completed-green"><br/>
 IDE: IntelliJ IDEA<br/>
 Plugins:<br/>
 Dart Version: +3.3.2<br/>
